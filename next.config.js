@@ -11,7 +11,7 @@ module.exports = (phase) => {
         GITHUB_REDIRECT_URL: 'https://github-oauth.glif.io/callback',
         VERIFIER_URL: 'https://verifier.glif.io',
         OAUTH_STATE_STRING: 'verifier',
-        LOTUS_NODE_JSONRPC: 'https://dev.node.glif.io/01/rpc/v0',
+        LOTUS_NODE_JSONRPC: 'https://node.glif.io/space01/lotus/rpc/v0',
         NETWORK_IDENTIFIER: 'space-race',
         IS_PROD: true
       }
