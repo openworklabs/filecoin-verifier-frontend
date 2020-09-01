@@ -12,7 +12,7 @@ module.exports = (phase) => {
         VERIFIER_URL: 'https://verifier.glif.io',
         OAUTH_STATE_STRING: 'verifier-nerpa',
         LOTUS_NODE_JSONRPC: 'https:/dev.node.glif.io/nerpa01/lotus/rpc/v0',
-        NETWORK_IDENTIFIER: 'space-race',
+        NETWORK_IDENTIFIER: 'nerpa',
         IS_PROD: true
       }
     }
