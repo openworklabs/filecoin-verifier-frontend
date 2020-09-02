@@ -53,11 +53,11 @@ export default () => {
           setMostRecentAllocation(res.data.mostRecentAllocation)
         }
       } catch (err) {
-        setErr(err.message)
+        setErr(err.response.data.error)
         reportError(
           'components/CheckVerifiedStorageAmount.jsx:2',
           false,
-          err.reponse.data.error,
+          err.response.data.error,
           err.message,
           err.stack
         )
@@ -124,9 +124,8 @@ export default () => {
           justifyContent='space-between'
           flexWrap='wrap'
         >
-        
           <Form onSubmit={onSubmit}>
-          <Box
+            <Box
               position='relative'
               display='flex'
               flexGrow='1'
@@ -150,7 +149,7 @@ export default () => {
                 }}
               />
               <Button
-                position="absolute"
+                position='absolute'
                 right='0'
                 type='submit'
                 title='Check'
@@ -177,9 +176,9 @@ export default () => {
             </Text>
           </>
         )}
-          <Label color='status.fail.background' mb={0}>
-            {err}
-          </Label>
+        <Label color='status.fail.background' mb={0}>
+          {err}
+        </Label>
       </Box>
     </Box>
   )
