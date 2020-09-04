@@ -5,19 +5,25 @@ import { validateAddressString } from '@openworklabs/filecoin-address'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
-import {
-  Box,
-  Button,
-  Card,
-  Text,
-  Input,
-  InputLabelBase,
-  Label,
-  StepHeader
-} from './Shared'
+import { Box, Button, Card, Text, Input, InputLabelBase, Label } from './Shared'
 import reportError from '../utils/reportError'
 
 dayjs.extend(relativeTime)
+
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+]
 
 const Form = styled.form`
   display: flex;
@@ -69,10 +75,18 @@ export default () => {
   }
 
   const calcNextAllocationTime = () => {
-    if (dayjs(mostRecentAllocation).isBefore(dayjs())) {
+    // pick some far away date, before the verifier was made
+    if (dayjs(mostRecentAllocation).isBefore(dayjs('2020-01-01'))) {
       return 'now'
     }
-    return dayjs().to(dayjs(mostRecentAllocation).add(30, 'day'))
+
+    const renewal = dayjs(mostRecentAllocation).add(30, 'day')
+    const renewalYear = renewal.format('YYYY')
+    const renewalMonth = months[Number(renewal.format('MM')) - 1]
+    const renewalDay = renewal.format('DD')
+    const time = renewal.format('HH:mm')
+
+    return `after ${renewalMonth} ${renewalDay}, ${renewalYear} at ${time}`
   }
 
   return (
@@ -164,7 +178,7 @@ export default () => {
         </Box>
       </Card>
       <Box pt={0} mx={3} minHeight={4} mt={3}>
-        {remainingBytes && !err && (
+        {remainingBytes && !err && !loading && (
           <>
             <Text color='core.black'>
               {filAddress} has {remainingBytes} bytes of verified Filecoin
@@ -176,6 +190,7 @@ export default () => {
             </Text>
           </>
         )}
+        {loading && !err && <Text color='core.black'>Loading...</Text>}
         <Label color='status.fail.background' mb={0}>
           {err}
         </Label>
