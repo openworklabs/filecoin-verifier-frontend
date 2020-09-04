@@ -11,7 +11,7 @@ module.exports = (phase) => {
         GITHUB_REDIRECT_URL: 'https://github-oauth.glif.io/callback',
         VERIFIER_URL: 'https://nerpa.verifier.glif.io',
         OAUTH_STATE_STRING: 'verifier-nerpa',
-        LOTUS_NODE_JSONRPC: 'https:/dev.node.glif.io/nerpa01/lotus/rpc/v0',
+        LOTUS_NODE_JSONRPC: 'https://dev.node.glif.io/nerpa01/lotus/rpc/v0',
         NETWORK_IDENTIFIER: 'nerpa',
         IS_PROD: true
       }
